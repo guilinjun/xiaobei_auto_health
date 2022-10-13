@@ -22,20 +22,20 @@ if username == None or password == None or location == None:
 else:
     base64_password = str(base64.b64encode(bytes(password, encoding="utf-8")), encoding="utf-8")
 
-bzd = location.split(',')
-location_x = str(bzd[1])
-location_y = str(bzd[0])
-reqloc = "https://api.xiaobaibk.com/api/location/?location=" + bzd[1] + "," + bzd[0]
-result = requests.get(reqloc).text
-location_r_data = json.loads(result)
-if location_r_data['status'] == 0:
-    province = location_r_data['result']['addressComponent']['province']
-    city = location_r_data['result']['addressComponent']['city']
-    district = location_r_data['result']['addressComponent']['district']
-    zh_location = '中国-' + province + '-' + city + '-' + district
-else:
-    print("位置获取失败")
-    os._exit(0)
+# bzd = location.split(',')
+# location_x = str(bzd[1])
+# location_y = str(bzd[0])
+# reqloc = "https://api.xiaobaibk.com/api/location/?location=" + bzd[1] + "," + bzd[0]
+# result = requests.get(reqloc).text
+# location_r_data = json.loads(result)
+# if location_r_data['status'] == 0:
+#     province = location_r_data['result']['addressComponent']['province']
+#     city = location_r_data['result']['addressComponent']['city']
+#     district = location_r_data['result']['addressComponent']['district']
+#     zh_location = '中国-' + province + '-' + city + '-' + district
+# else:
+#     print("位置获取失败")
+#     os._exit(0)
 
 #体温随机
 random_tem_x=random.randint(3, 6)
@@ -50,7 +50,7 @@ location_y = location.split(',')[1].split('.')[0] + '.' + location.split(',')[1]
 
 health_parameter = {
     "temperature": "%s" %random_tem,                #体温为35.3~36.8的随机数
-    "coordinates": zh_location,
+    "coordinates": "中国湖南省长沙市望城区",
     "location": "%s,%s" %(location_x,location_y),   #地址也为范围内的随机数
     "healthState": "1",
     "dangerousRegion": "2",
